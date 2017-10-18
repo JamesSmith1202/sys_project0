@@ -47,7 +47,10 @@ struct song_node * search_artist(char * artist, struct song_node * head) {
   return 0;
 }
 
-void add_order(struct song_node * head, struct song_node * to_add) {
+void insert_order(struct song_node *head, char *art, char *name) {
+  struct song_node *to_add = (struct song_node*)malloc(sizeof(struct song_node));
+  to_add->name = name;
+  to_add->artist = art;
   struct song_node * temp = NULL;
   while (head) {
     if (strcmp(head -> artist, to_add -> artist) == 0 ) {
