@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "headers.h"
 
 void print_list(struct song_node *p){
     while(p){
@@ -11,7 +13,7 @@ void print_list(struct song_node *p){
 
 struct song_node * insert_front(struct song_node *p, char * art, char * name){
     struct song_node *new = (struct song_node*)malloc(sizeof(struct song_node));
-    new->name = name;
+    strcpy(new->name, name);
     new -> artist = art;
     new->next=p;
     return new; 
@@ -68,13 +70,13 @@ void insert_order(struct song_node *head, char *art, char *name) {
 }
 
 int main(){
-    struct song_node *linked = insert_front(NULL, 25);
-    print_list(linked);
-    printf("Adding more elements...\n");
-    linked = insert_front(insert_front(insert_front(linked, 24), 23), 22);
-    print_list(linked);
-    printf("about to free...\n");
-    free_list(linked);
-    print_list(linked);
-    return 0;
+  struct song_node *ll = insert_front(0, "d ", "songd");
+  printf("adding nodes\n");
+  ll = insert_order(ll, "a", "songa1");
+  ll = insert_order(ll, "a", "songa2");
+  ll = insert_order(ll, "b", "songb");
+  ll = insert_order(ll, "z", "songz");
+  print_list(ll);
+  struct song_node *target = search_artist(ll, "a");
+  printf("Target artist:%s song:%s \n", target->artist, target->name);
 }
