@@ -13,9 +13,9 @@ void print_list(struct song_node *p){
 
 struct song_node * insert_front(struct song_node *p, char * art, char * name){
     struct song_node *new = (struct song_node*)malloc(sizeof(struct song_node));
-    strcpy(new->name, name);
-    new -> artist = art;
-    new->next=p;
+    strcpy(new -> name, name);
+    strcpy(new -> artist, art);
+    new -> next = p;
     return new; 
 }
 
@@ -29,7 +29,7 @@ struct song_node * free_list(struct song_node *p){
     return 0;
 }
 
-struct song_node * search_list(char * artist, char * song, struct song_node * lshead) {
+struct song_node * search_list(char * artist, char * song, struct song_node * head) {
   while (head) {
     if (head -> artist == artist && head -> name == song) {
       return head;
@@ -49,24 +49,33 @@ struct song_node * search_artist(char * artist, struct song_node * head) {
   return 0;
 }
 
-void insert_order(struct song_node *head, char *art, char *name) {
+struct song_node * insert_order(struct song_node *head, char *art, char *name) {
   struct song_node *to_add = (struct song_node*)malloc(sizeof(struct song_node));
-  to_add->name = name;
-  to_add->artist = art;
+  struct song_node * ret = head;
+  strcpy(to_add -> name, name);
+  strcpy(to_add -> artist, art);
   struct song_node * temp = NULL;
+  int i = 0;
   while (head) {
     if (strcmp(head -> artist, to_add -> artist) == 0 ) {
       if (strcmp(head -> name, to_add -> name) < 0) {
+	if (!i) {
+	  return insert_front(head, art, name);
+	}
 	to_add -> next = head;
 	temp -> next = to_add;
       }
     }
     if (strcmp(head -> artist, to_add -> artist) < 0 ) {
+      if (!i) {
+	return insert_front(head, art, name);
+      }
       to_add -> next = head;
       temp -> next = to_add;
     }
     temp = head;
   }
+  return ret;
 }
 
 int main(){
@@ -77,6 +86,7 @@ int main(){
   ll = insert_order(ll, "b", "songb");
   ll = insert_order(ll, "z", "songz");
   print_list(ll);
-  struct song_node *target = search_artist(ll, "a");
+  struct song_node *target = search_artist("a", ll);
   printf("Target artist:%s song:%s \n", target->artist, target->name);
+  return 0;
 }
