@@ -59,7 +59,7 @@ struct song_node * insert_order(struct song_node *head, char *art, char *name) {
   while (head) {
     if (strcmp(head -> artist, to_add -> artist) == 0 ) {
       if (strcmp(head -> name, to_add -> name) < 0) {
-	if (!i) {
+	if (i) {
 	  return insert_front(head, art, name);
 	}
 	to_add -> next = head;
@@ -67,13 +67,15 @@ struct song_node * insert_order(struct song_node *head, char *art, char *name) {
       }
     }
     if (strcmp(head -> artist, to_add -> artist) < 0 ) {
-      if (!i) {
+      if (i) {
 	return insert_front(head, art, name);
       }
       to_add -> next = head;
       temp -> next = to_add;
     }
+    i ++;
     temp = head;
+    head = head -> next;
   }
   return ret;
 }
