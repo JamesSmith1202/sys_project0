@@ -1,6 +1,6 @@
 //structs
 struct song_node { char name[256]; char artist[256]; struct song_node *next; };
-struct song_arr { struct song_node arr[26]; };
+struct song_arr * song_arr[27];
 
 //linkedlist functions
 void print_list(struct song_node *);
@@ -14,9 +14,9 @@ struct song_node * free_list(struct song_node *);
 
 //song_arr functions
 int char_index(char);
-void add_song(struct song_arr *, char *, char *);
-struct song_node search_artist_arr(struct song_arr, char * );
-struct song_node search_song_arr(struct song_arr , char *, char *);
+struct song_node * add_song(struct song_arr *, char *, char *);
+struct song_node * search_artist_arr(struct song_arr, char * );
+struct song_node * search_song_arr(struct song_arr , char *, char *);
 void print_letter(struct song_arr , char );
 void print_artist(struct song_arr , char *);
 void print_arr(struct song_arr );

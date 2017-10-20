@@ -12,6 +12,7 @@ int main()
     struct song_node *ll = insert_front(0, "j cole", "for whom the bell tolls");
     print_list(ll);
     printf("Adding nodes...\n");
+    /***
     ll = insert_order(ll, "jay z", "ni**as in paris");
     print_list(ll);
     ll = insert_order(ll, "j cole", "g.o.m.d.");
@@ -102,6 +103,6 @@ int main()
     free_arr(arr);
     printf("after...\n");
     print_arr(arr);
-
+    ***/
     return 0;
 }
