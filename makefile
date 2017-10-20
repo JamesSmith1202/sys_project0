@@ -16,3 +16,4 @@ song_arr.o: song_arr.c
 clean:
 	rm -f *.o
 	rm -f *~
+	rm run

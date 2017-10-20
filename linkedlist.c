@@ -74,6 +74,9 @@ struct song_node *search_song(struct song_node *head, char *artist, char *name)
 
 struct song_node *get_random(struct song_node *head)
 {
+  if(!head){
+    return head;
+  }
   struct song_node *counter_head = head;
   int len = 0;
   while (counter_head)

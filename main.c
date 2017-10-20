@@ -59,13 +59,10 @@ int main()
     printf("\n");
 
 
-    printf("------------------------------------\nMUSIC LIBRARY TESTS\n ------------------------------------\n");
+    printf("============================\nMUSIC LIBRARY TESTS\n ============================\n");
     printf("------------------------------------\nPopulating the array...\n");
-    //struct song_arr arr = NULL;
-    print_arr(arr);
-    arr = add_song(arr,"clique" ,"jay z");
-    print_arr(arr);
-    arr = add_song(arr, "ultralight beam", "kanye west" );
+    add_song(arr,"clique" ,"jay z");
+    add_song(arr, "ultralight beam", "kanye west" );
     add_song(arr, "white iverson","post malone" );
     add_song(arr, "yeah right", "vince staples");
     add_song(arr, "norf norf","vince staples" );
@@ -83,7 +80,7 @@ int main()
     printf("------------------------------------\nTesting print_arr...\n");
     print_arr(arr);
     printf("------------------------------------\nTesting print_letter...\n");
-    print_letter(arr, "l");
+    print_letter(arr, 'l');
     printf("------------------------------------\nTesting print_artist...\n");
     print_artist(arr, "lil uzi vert");
     printf("------------------------------------\nTesting search_artist with vince staples...\n");
@@ -95,14 +92,17 @@ int main()
     printf("------------------------------------\nTesting shuffle: shuffling 5 songs...\n");
     shuffle(arr, 5);
     printf("------------------------------------\nTesting delete_song: deleting boredom by tyler the creator...\n");
+    printf("before...\n");
     print_artist(arr, "tyler the creator");
     delete_song(arr, "tyler the creator", "boredom");
+    printf("after....\n");
     print_artist(arr, "tyler the creator");
     printf("------------------------------------\nTesting free_arr...\n");
     printf("before...\n");
     print_arr(arr);
     free_arr(arr);
-    printf("after...\n");
+    printf("\nafter...\n");
     print_arr(arr);
+    printf("============================\nEND OF TESTS\n ============================\n");
     return 0;
 }
