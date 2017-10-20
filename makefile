@@ -1,8 +1,8 @@
 run: all
 	./run
 
-all: linkedlist.o main.o
-	gcc -o run linkedlist.o main.o
+all: linkedlist.o song_arr.o main.o
+	gcc -o run linkedlist.o song_arr.o main.o
 
 main.o: main.c headers.h
 	gcc -c main.c
@@ -10,8 +10,8 @@ main.o: main.c headers.h
 linkedlist.o: linkedlist.c
 	gcc -c linkedlist.c
 
-songarr.o: linkedlist.o songarr.c
-	gcc -c songarr.c
+song_arr.o: song_arr.c
+	gcc -c song_arr.c
 
 clean:
 	rm -f *.o

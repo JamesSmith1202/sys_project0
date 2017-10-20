@@ -56,9 +56,52 @@ int main()
     ll = free_list(ll);
     printf("After...\n");
     print_list(ll);
+    printf("\n");
 
 
     printf("------------------------------------\nMUSIC LIBRARY TESTS\n ------------------------------------\n");
+    printf("------------------------------------\nPopulating the array...\n");
+    struct song_arr arr = NULL;
+    arr = add_song(arr,"clique" ,"jay z");
+    add_song(arr, "ultralight beam", "kanye west" );
+    add_song(arr, "white iverson","post malone" );
+    add_song(arr, "yeah right", "vince staples");
+    add_song(arr, "norf norf","vince staples" );
+    add_song(arr, "slippery", "migos");
+    add_song(arr, "rockstar", "post malone");
+    add_song(arr, "two", "lil uzi vert");
+    add_song(arr, "no sleep leak", "lil uzi vert");
+    add_song(arr, "the way life goes", "lil uzi vert");
+    add_song(arr, "for real","lil uzi vert" );
+    add_song(arr, "congratualtions","post malone" );
+    add_song(arr, "pothole", "tyler the creator");
+    add_song(arr, "boredom","tyler the creator" );
+    add_song(arr, "ianahb","lil wayne" );
+    add_song(arr, "moves","big sean" );
+    printf("------------------------------------\nTesting print_arr...\n");
+    print_arr(arr);
+    printf("------------------------------------\nTesting print_letter...\n");
+    print_letter(arr, 'l');
+    printf("------------------------------------\nTesting print_artist...\n");
+    print_artist(arr, 'lil uzi vert');
+    printf("------------------------------------\nTesting search_artist with vince staples...\n");
+    target = search_artist_arr(arr, 'vince staples');
+    printf("Searched artist: %s First song: %s \n", target->artist, target->name);
+    printf("------------------------------------\nTesting search_song with rockstar by post malone...\n");
+    target = search_song_arr(arr, "post malone", "rockstar");
+    printf("Artist: %s Song: %s \n", target->artist, target->name);
+    printf("------------------------------------\nTesting shuffle: shuffling 5 songs...\n");
+    shuffle(arr, 5);
+    printf("------------------------------------\nTesting delete_song: deleting boredom by tyler the creator...\n");
+    print_artist(arr, "tyler the creator");
+    delete_song(arr, "tyler the creator", "boredom");
+    print_artist(arr, "tyler the creator");
+    printf("------------------------------------\nTesting free_arr...\n");
+    printf("before...\n");
+    print_arr(arr);
+    free_arr(arr);
+    printf("after...\n");
+    print_arr(arr);
 
     return 0;
 }
