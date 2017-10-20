@@ -12,7 +12,6 @@ int main()
     struct song_node *ll = insert_front(0, "j cole", "for whom the bell tolls");
     print_list(ll);
     printf("Adding nodes...\n");
-    /***
     ll = insert_order(ll, "jay z", "ni**as in paris");
     print_list(ll);
     ll = insert_order(ll, "j cole", "g.o.m.d.");
@@ -62,9 +61,11 @@ int main()
 
     printf("------------------------------------\nMUSIC LIBRARY TESTS\n ------------------------------------\n");
     printf("------------------------------------\nPopulating the array...\n");
-    struct song_arr arr = NULL;
+    //struct song_arr arr = NULL;
+    print_arr(arr);
     arr = add_song(arr,"clique" ,"jay z");
-    add_song(arr, "ultralight beam", "kanye west" );
+    print_arr(arr);
+    arr = add_song(arr, "ultralight beam", "kanye west" );
     add_song(arr, "white iverson","post malone" );
     add_song(arr, "yeah right", "vince staples");
     add_song(arr, "norf norf","vince staples" );
@@ -82,11 +83,11 @@ int main()
     printf("------------------------------------\nTesting print_arr...\n");
     print_arr(arr);
     printf("------------------------------------\nTesting print_letter...\n");
-    print_letter(arr, 'l');
+    print_letter(arr, "l");
     printf("------------------------------------\nTesting print_artist...\n");
-    print_artist(arr, 'lil uzi vert');
+    print_artist(arr, "lil uzi vert");
     printf("------------------------------------\nTesting search_artist with vince staples...\n");
-    target = search_artist_arr(arr, 'vince staples');
+    target = search_artist_arr(arr, "vince staples");
     printf("Searched artist: %s First song: %s \n", target->artist, target->name);
     printf("------------------------------------\nTesting search_song with rockstar by post malone...\n");
     target = search_song_arr(arr, "post malone", "rockstar");
@@ -103,6 +104,5 @@ int main()
     free_arr(arr);
     printf("after...\n");
     print_arr(arr);
-    ***/
     return 0;
 }
