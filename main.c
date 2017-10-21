@@ -4,9 +4,8 @@
 #include <string.h>
 #include "headers.h"
 
-int main()
-{
-    printf("============================\nLINKED LIST TESTS\n ============================\n");
+int main() {
+    printf("\n\n============================\nLINKED LIST TESTS\n============================\n");
 
     printf("Intializing linked list with insert_front...\n\n");
     struct song_node *ll = insert_front(0, "j cole", "for whom the bell tolls");
@@ -59,7 +58,7 @@ int main()
     printf("\n");
 
 
-    printf("============================\nMUSIC LIBRARY TESTS\n ============================\n");
+    printf("============================\nMUSIC LIBRARY TESTS\n============================\n");
     printf("------------------------------------\nPopulating the array...\n");
     add_song(arr,"clique" ,"jay z");
     add_song(arr, "ultralight beam", "kanye west" );
@@ -103,6 +102,6 @@ int main()
     free_arr(arr);
     printf("\nafter...\n");
     print_arr(arr);
-    printf("============================\nEND OF TESTS\n ============================\n");
+    printf("============================\nEND OF TESTS\n============================\n");
     return 0;
 }

@@ -4,86 +4,89 @@
 #include <string.h>
 #include "headers.h"
 
-int char_index(char a)
-{
+//to find where each letter is in the array
+int char_index(char a) {
     return a - 97; //lowercase chars start at 97
 }
 
-void add_song(struct song_node *song_arr[], char *name, char *artist)
-{
-    song_arr[char_index(artist[0])] = insert_order(song_arr[char_index(artist[0])], artist, name); //needs to be song_node
+//add songs in order based on artist name and song
+void add_song(struct song_node *arr[], char *name, char *artist) {
+    arr[char_index(artist[0])] = insert_order(arr[char_index(artist[0])], artist, name); 
     printf("%s by %s has been added!\n", name, artist);
 }
 
-struct song_node *search_artist_arr(struct song_node *song_arr[], char *artist)
-{
-    return search_artist(artist, song_arr[char_index(artist[0])]); //another
+//search for first song by specified artist
+struct song_node *search_artist_arr(struct song_node *arr[], char *artist) {
+    return search_artist(artist, arr[char_index(artist[0])]);
 }
 
-struct song_node *search_song_arr(struct song_node *song_arr[], char *artist, char *name)
-{
-    return search_song(song_arr[char_index(artist[0])], artist, name);
+//search for specified song by specified artist
+struct song_node *search_song_arr(struct song_node *arr[], char *artist, char *name) {
+    return search_song(arr[char_index(artist[0])], artist, name);
 }
 
-void print_letter(struct song_node *song_arr[], char a)
-{
-    print_list(song_arr[char_index(a)]); //another
+//print all songs with artists starting with specified letter
+void print_letter(struct song_node *arr[], char a) {
+    print_list(arr[char_index(a)]);
 }
 
-void print_artist(struct song_node *song_arr[], char *artist)
-{
-    struct song_node *start = search_artist(artist, song_arr[char_index(artist[0])]); // another
-    while (start && (strcmp(start->artist, artist) == 0))
-    {
-        printf("Song: %s | ", start->name);
-        start = start->next;
+//print all songs by specified artist
+void print_artist(struct song_node *arr[], char *artist) {
+    struct song_node *start = search_artist(artist, arr[char_index(artist[0])]);
+    while (start && (strcmp(start -> artist, artist) == 0)) {
+        printf("Song: %s | ", start -> name);
+        start = start -> next;
     }
     printf("\n");
 }
 
-void print_arr(struct song_node *arr[])
-{
+//print all songs by all artists
+void print_arr(struct song_node *arr[]) {
     int i = 0;
-    for (; i < 26; i++)
-    {
-        print_list(arr[i]); //another
+    for (; i < 26; i++) {
+        printf("%c:\t", i + 97);
+        print_list(arr[i]);
     }
 }
 
-void shuffle(struct song_node *arr[], int songs)
-{
+//get songs number of random songs
+void shuffle(struct song_node *arr[], int songs) {
     struct song_node *rsong;
-    for (; songs > 0; songs--)
-    {
+    for (; songs > 0; songs--) {
         rsong = 0;
-        while (!rsong)
-        {
+        while (!rsong) {
             int letter = rand() % 26;
-            rsong = get_random(arr[letter]); //another
+            rsong = get_random(arr[letter]);
         }
-        printf("%s : %s | ", rsong->artist, rsong->name);
+        printf("%s : %s | ", rsong -> artist, rsong -> name);
     }
     printf("\n");
 }
 
-void delete_song(struct song_node *arr[], char *artist, char *name)
-{
+//delete specified song from library
+void delete_song(struct song_node *arr[], char *artist, char *name) {
     struct song_node *i;
-    i = remove_node(arr[char_index(artist[0])], artist, name); //another
+
+    //deletes song from the letter of the artist in library
+    i = remove_node(arr[char_index(artist[0])], artist, name);
     arr[char_index(artist[0])] = i;
-    if (!i)
-    {
+
+    //if song doesn't exist
+    if (!i) {
         printf("Song not found\n");
     }
+
     printf("Song was deleted\n");
 }
 
-void free_arr(struct song_node *arr[])
-{
+//free entire library
+void free_arr(struct song_node *arr[]) {
     int i = 0;
-    for (; i < 26; i++)
-    {
-        arr[i] = free_list(arr[i]); //another
+    
+    //frees each list for each letter
+    for (; i < 26; i++) {
+        arr[i] = free_list(arr[i]); 
     }
+
     printf("Array has been freed\n");
 }
